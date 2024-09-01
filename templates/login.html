@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="image-container">
+        <img src="https://blogs.zeiss.com/digital-innovation/de/wp-content/uploads/sites/2/2020/05/201909_Security_SQL-Injection_1.png" alt="SQL Injection">
+    </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="checkbox" onclick="togglePassword()"> Mostrar Senha<br>
+            <label for="mode">Escolha o modo:</label>
+            <select id="mode" name="mode">
+                <option value="vulnerable">Vulnerável</option>
+                <option value="protected">Protegido</option>
+            </select><br><br>
+            <input type="submit" value="Acessar">
+        </form>
+        <div class="footer">
+            <p><a href="#">Perdeu a senha?</a></p>
+        </div>
+    </div>
+    {% if error %}
+    <div class="popup" id="loginPopup">
+        <h2>Falha no Login</h2>
+        <p>O nome de usuário ou senha está incorreto.</p>
+        <button onclick="closePopup()">Fechar</button>
+    </div>
+    {% endif %}
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+
+        function closePopup() {
+            document.getElementById("loginPopup").style.display = "none";
+        }
+
+        // Mostra o popup se a URL tiver ?error=true
+        window.onload = function() {
+            if (document.getElementById("loginPopup")) {
+                document.getElementById("loginPopup").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

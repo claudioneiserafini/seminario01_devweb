@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de XSS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Simulação de XSS</h1>
+        <form method="POST" action="/xss">
+            <label for="comment">Deixe seu comentário:</label><br>
+            <textarea name="comment" id="comment" rows="4" cols="50"></textarea><br><br>
+            <input type="submit" value="Enviar">
+        </form>
+        <div class="comment-section">
+            <h2>Comentários:</h2>
+            <p>{{ comment | safe }}</p> <!-- Exibe o comentário, permitindo scripts -->
+        </div>
+    </div>
+</body>
+</html>

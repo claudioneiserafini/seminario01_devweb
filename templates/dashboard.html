@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Bem-vindo, {{ username }}!</h1>
+        <div class="image-container">
+            {% if mode == 'vulnerable' %}
+            <img src="https://cdn-icons-png.flaticon.com/512/10961/10961343.png" alt="Vulnerável">
+            {% elif mode == 'protected' %}
+            <img src="https://www.automataweb.com.br/wp-content/uploads/2018/05/seguro1.png" alt="Protegido">
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
