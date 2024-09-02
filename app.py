@@ -25,5 +25,12 @@ def dashboard(username):
     mode = request.args.get('mode')
     return render_template('dashboard.html', username=username, mode=mode)
 
+@app.route('/xss', methods=['GET', 'POST'])
+def xss():
+    comment = ''
+    if request.method == 'POST':
+        comment = request.form['comment']
+    return render_template('xss.html', comment=comment)
+
 if __name__ == '__main__':
     app.run(debug=True)
